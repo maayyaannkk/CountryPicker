@@ -1,5 +1,6 @@
 package in.mayanknagwanshi.countrypicker;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,13 +8,15 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import in.mayanknagwanshi.countrypicker.adapter.CountryAdapter;
 import in.mayanknagwanshi.countrypicker.bean.CountryData;
 import in.mayanknagwanshi.countrypicker.util.JsonHelper;
 
 public class CountrySelectActivity extends AppCompatActivity {
+
+    public static final String RESULT_COUNTRY_DATA = "result_country_data";
+
     RecyclerView recyclerView;
     EditText editTextSearch;
     CountryAdapter countryAdapter;
@@ -33,8 +36,10 @@ public class CountrySelectActivity extends AppCompatActivity {
         countryAdapter.setCountrySelectListener(new CountryAdapter.CountrySelectListener() {
             @Override
             public void onCountrySelect(CountryData countryData) {
-                Toast.makeText(CountrySelectActivity.this, countryData.getCountryName(), Toast.LENGTH_SHORT).show();
-                //TODO send result back to calling activity
+                Intent intent = new Intent();
+                intent.putExtra(RESULT_COUNTRY_DATA, countryData);
+                setResult(RESULT_OK, intent);
+                finish();
             }
         });
 

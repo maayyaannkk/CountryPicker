@@ -1,5 +1,6 @@
 package in.mayanknagwanshi.countrypicker.adapter;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,9 +15,19 @@ import in.mayanknagwanshi.countrypicker.bean.CountryData;
 
 public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.CountryViewHolder> {
     private ArrayList<CountryData> countryDataList;
+    CountrySelectListener countrySelectListener;
 
     public CountryAdapter(ArrayList<CountryData> countryDataList) {
         this.countryDataList = countryDataList;
+    }
+
+    public void setCountryDataList(ArrayList<CountryData> countryDataList) {
+        this.countryDataList = countryDataList;
+        notifyDataSetChanged();
+    }
+
+    public void setCountrySelectListener(CountrySelectListener countrySelectListener) {
+        this.countrySelectListener = countrySelectListener;
     }
 
     static class CountryViewHolder extends RecyclerView.ViewHolder {
@@ -33,21 +44,31 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.CountryV
     }
 
     @Override
-    public CountryAdapter.CountryViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public CountryAdapter.CountryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_item_country, parent, false);
         return new CountryViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(CountryViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final CountryViewHolder holder, int position) {
         holder.textViewCountryName.setText(countryDataList.get(position).getCountryName());
         holder.textViewCountryISD.setText(countryDataList.get(position).getCountryISD());
         holder.imageViewFlag.setImageResource(countryDataList.get(position).getCountryFlag());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                countrySelectListener.onCountrySelect(countryDataList.get(holder.getAdapterPosition()));
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return countryDataList.size();
+    }
+
+    public interface CountrySelectListener {
+        void onCountrySelect(CountryData countryData);
     }
 }

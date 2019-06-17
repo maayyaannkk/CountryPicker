@@ -42,6 +42,30 @@ public class JsonHelper {
         return null;
     }
 
+    public static ArrayList<CountryData> parseJsonToCountryList(Context context, String searchString) {
+        try {
+            JSONObject mainObject = new JSONObject(getJson(context));
+            JSONArray countryArray = mainObject.getJSONArray("countryCodes");
+            ArrayList<CountryData> countryDataArrayList = new ArrayList<>();
+            for (int i = 0; i < countryArray.length(); i++) {
+                JSONObject countryObject = countryArray.getJSONObject(i);
+                CountryData countryData = new CountryData();
+                countryData.setCountryCode(countryObject.getString("country_code"));
+                countryData.setCountryName(countryObject.getString("country_name"));
+                countryData.setCountryISD(countryObject.getString("dialling_code"));
+                countryData.setCountryFlag(context.getResources().getIdentifier(countryObject.getString("country_flag"), "drawable", context.getPackageName()));
+                if (countryData.getCountryName().toLowerCase().contains(searchString.toLowerCase())
+                        || countryData.getCountryCode().toLowerCase().contains(searchString.toLowerCase())
+                        || countryData.getCountryISD().toLowerCase().contains(searchString.toLowerCase()))
+                    countryDataArrayList.add(countryData);
+            }
+            return countryDataArrayList;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     private static String getJson(Context context) {
         InputStream is = context.getResources().openRawResource(R.raw.country);
         Writer writer = new StringWriter();

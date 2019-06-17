@@ -3,7 +3,7 @@
     package="in.mayanknagwanshi.countrypicker">
 
     <application>
-        <activity android:name=".CountrySelectActivity"/>
+        <activity android:name=".CountrySelectActivity" android:theme="@style/CountryAppTheme"/>
     </application>
 
 </manifest>

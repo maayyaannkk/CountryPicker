@@ -1,6 +1,8 @@
 package in.mayanknagwanshi.countrypicker.bean;
 
-public class CountryData {
+import java.io.Serializable;
+
+public class CountryData implements Serializable {
     private String countryName, countryCode, countryISD;
     private int countryFlag;
 

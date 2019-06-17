@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">CountryPicker</string>
+    <string name="country_select_hint_search">search</string>
+</resources>

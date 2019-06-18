@@ -1,7 +1,7 @@
 # Country-Picker
 Android library to get country data (eg. ISD code, country code, name) from list of countries.
 
-# Download [![](https://jitpack.io/v/maayyaannkk/CountryPicker.svg)](https://jitpack.io/#maayyaannkk/CountryPicker)
+# Download [![](https://jitpack.io/v/maayyaannkk/CountryPicker.svg)](https://jitpack.io/#maayyaannkk/CountryPicker) [![Android Arsenal]( https://img.shields.io/badge/Android%20Arsenal-CountryPicker-green.svg?style=flat )]( https://android-arsenal.com/details/1/7717 )
 
 Add this to your project's `build.gradle`
 

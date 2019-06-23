@@ -24,7 +24,26 @@ dependencies {
 change `x.y.z` to version in [![](https://jitpack.io/v/maayyaannkk/CountryPicker.svg)](https://jitpack.io/#maayyaannkk/CountryPicker)
 
 ## Usage
-The simplest way to start is start the activity
+Embed layout in xml like
+```xml
+<in.mayanknagwanshi.countrypicker.custom.CountryPickerView
+        android:id="@+id/countryPickerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:showSearch="true" /><!-- false to hide search edit text -->
+```
+and reference in activity/fragment to get selection
+```java
+CountryPickerView countryPickerView = findViewById(R.id.countryPickerView);
+countryPickerView.setCountrySelectListener(countryData -> {
+	//country details
+	String countryName = countryData.getCountryName();
+        String isdCode = countryData.getCountryISD();
+        String countryCode = countryData.getCountryCode();
+});
+```
+
+Option to start the activity as dialog
 ```java
 Intent intent = new Intent(this, CountrySelectActivity.class);
 startActivityForResult(intent, 1213);
@@ -35,11 +54,7 @@ Receive result
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1213 && resultCode == Activity.RESULT_OK) {
-            CountryData countryData = (CountryData) data.getSerializableExtra(CountrySelectActivity.RESULT_COUNTRY_DATA);
-            //country details
-            String countryName = countryData.getCountryName();
-            String isdCode = countryData.getCountryISD();
-            String countryCode = countryData.getCountryCode();
+            CountryData countryData = (CountryData) data.getSerializableExtra(CountrySelectActivity.RESULT_COUNTRY_DATA);           
         }
     }
 ```

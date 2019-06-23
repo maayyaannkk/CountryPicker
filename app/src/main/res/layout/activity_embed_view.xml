@@ -10,5 +10,5 @@
         android:id="@+id/countryPickerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:showSearch="true" />
+        app:showSearch="true" /><!-- false to hide search edit text -->
 </LinearLayout>

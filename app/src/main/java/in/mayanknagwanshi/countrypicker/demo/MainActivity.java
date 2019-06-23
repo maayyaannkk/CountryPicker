@@ -16,7 +16,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        startActivityForResult(new Intent(this, CountrySelectActivity.class), 121);
+        findViewById(R.id.button1).setOnClickListener(v -> {
+            startActivityForResult(new Intent(this, CountrySelectActivity.class), 121);
+        });
+        findViewById(R.id.button2).setOnClickListener(v -> {
+            startActivity(new Intent(this, EmbedViewActivity.class));
+        });
+
     }
 
     @Override

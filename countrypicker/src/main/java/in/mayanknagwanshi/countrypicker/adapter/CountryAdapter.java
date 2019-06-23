@@ -12,10 +12,11 @@ import java.util.ArrayList;
 
 import in.mayanknagwanshi.countrypicker.R;
 import in.mayanknagwanshi.countrypicker.bean.CountryData;
+import in.mayanknagwanshi.countrypicker.listener.CountrySelectListener;
 
 public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.CountryViewHolder> {
     private ArrayList<CountryData> countryDataList;
-    CountrySelectListener countrySelectListener;
+    private CountrySelectListener countrySelectListener;
 
     public CountryAdapter(ArrayList<CountryData> countryDataList) {
         this.countryDataList = countryDataList;
@@ -66,9 +67,5 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.CountryV
     @Override
     public int getItemCount() {
         return countryDataList.size();
-    }
-
-    public interface CountrySelectListener {
-        void onCountrySelect(CountryData countryData);
     }
 }

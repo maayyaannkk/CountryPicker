@@ -4,12 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".CountrySelectActivity">
+    tools:context=".EmbedViewActivity">
 
     <in.mayanknagwanshi.countrypicker.custom.CountryPickerView
         android:id="@+id/countryPickerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:showSearch="true" />
 </LinearLayout>

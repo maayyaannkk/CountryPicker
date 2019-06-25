@@ -1,6 +1,7 @@
 package in.mayanknagwanshi.countrypicker.adapter;
 
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import in.mayanknagwanshi.countrypicker.listener.CountrySelectListener;
 public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.CountryViewHolder> {
     private ArrayList<CountryData> countryDataList;
     private CountrySelectListener countrySelectListener;
+    private CountryData selectedCountry;
 
     public CountryAdapter(ArrayList<CountryData> countryDataList) {
         this.countryDataList = countryDataList;
@@ -27,12 +29,20 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.CountryV
         notifyDataSetChanged();
     }
 
+    public void setSelectedCountry(CountryData selectedCountry) {
+        this.selectedCountry = selectedCountry;
+        notifyDataSetChanged();
+    }
+
     public void setCountrySelectListener(CountrySelectListener countrySelectListener) {
         this.countrySelectListener = countrySelectListener;
     }
 
+    public CountryData getSelectedCountry() {
+        return selectedCountry;
+    }
+
     static class CountryViewHolder extends RecyclerView.ViewHolder {
-        // each data item is just a string in this case
         TextView textViewCountryName, textViewCountryISD;
         ImageView imageViewFlag;
 
@@ -62,6 +72,14 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.CountryV
                 countrySelectListener.onCountrySelect(countryDataList.get(holder.getAdapterPosition()));
             }
         });
+        if (selectedCountry != null) {
+            if (countryDataList.get(position).equals(selectedCountry))
+                holder.itemView.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.colorSelected));
+            else
+                holder.itemView.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.colorUnSelected));
+        } else
+            holder.itemView.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.colorUnSelected));
+
     }
 
     @Override

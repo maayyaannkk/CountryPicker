@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class CountryData implements Serializable {
     private String countryName, countryCode, countryISD;
     private int countryFlag;
+    //boolean isSelected;
 
     public String getCountryName() {
         return countryName;
@@ -36,5 +37,9 @@ public class CountryData implements Serializable {
 
     public void setCountryFlag(int countryFlag) {
         this.countryFlag = countryFlag;
+    }
+
+    public boolean equals(CountryData countryData) {
+        return countryCode.equalsIgnoreCase(countryData.getCountryCode());
     }
 }

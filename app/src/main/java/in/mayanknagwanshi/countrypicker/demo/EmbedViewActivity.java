@@ -15,7 +15,7 @@ public class EmbedViewActivity extends AppCompatActivity {
 
         CountryPickerView countryPickerView = findViewById(R.id.countryPickerView);
         countryPickerView.setCountrySelectListener(countryData -> {
-            Toast.makeText(this, countryData.getCountryName(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, countryPickerView.getSelectedCountry().getCountryName(), Toast.LENGTH_SHORT).show();
         });
     }
 }

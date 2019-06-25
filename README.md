@@ -42,6 +42,10 @@ countryPickerView.setCountrySelectListener(countryData -> {
         String countryCode = countryData.getCountryCode();
 });
 ```
+OR
+```java
+countryPickerView.getSelectedCountry(); //returns null if nothing was selected
+```
 
 Option to start the activity as dialog
 ```java

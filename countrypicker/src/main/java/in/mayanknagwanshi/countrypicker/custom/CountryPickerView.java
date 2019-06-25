@@ -23,6 +23,7 @@ public class CountryPickerView extends LinearLayout {
     CountryAdapter countryAdapter;
     private boolean showSearch;
     private CountrySelectListener countrySelectListener;
+    //private CountryData selectedCountry;
 
     public CountryPickerView(Context context) {
         this(context, null);
@@ -62,7 +63,7 @@ public class CountryPickerView extends LinearLayout {
 
         if (!showSearch) {
             editText.setVisibility(GONE);
-        }else {
+        } else {
             editText.addTextChangedListener(new TextWatcher() {
                 //region not used
 
@@ -88,13 +89,19 @@ public class CountryPickerView extends LinearLayout {
         countryAdapter.setCountrySelectListener(new CountrySelectListener() {
             @Override
             public void onCountrySelect(CountryData countryData) {
-                if (countrySelectListener != null)
+                if (countrySelectListener != null) {
+                    countryAdapter.setSelectedCountry(countryData);
                     countrySelectListener.onCountrySelect(countryData);
+                }
             }
         });
     }
 
     public void setCountrySelectListener(CountrySelectListener countrySelectListener) {
         this.countrySelectListener = countrySelectListener;
+    }
+
+    public CountryData getSelectedCountry() {
+        return countryAdapter.getSelectedCountry();
     }
 }

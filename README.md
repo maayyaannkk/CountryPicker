@@ -46,10 +46,14 @@ OR
 ```java
 countryPickerView.getSelectedCountry(); //returns null if nothing was selected
 ```
-
+set selection
+```java
+countryPickerView.setSelectedCountry(new CountryData("IN")); 
+```
 Option to start the activity as dialog
 ```java
 Intent intent = new Intent(this, CountrySelectActivity.class);
+intent.putExtra(CountrySelectActivity.EXTRA_SELECTED_COUNTRY, new CountryData("IN"));//for default selection
 startActivityForResult(intent, 1213);
 ```
 Receive result

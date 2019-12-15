@@ -17,7 +17,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         findViewById(R.id.button1).setOnClickListener(v -> {
-            startActivityForResult(new Intent(this, CountrySelectActivity.class), 121);
+            Intent intent = new Intent(this, CountrySelectActivity.class);
+            intent.putExtra(CountrySelectActivity.EXTRA_SELECTED_COUNTRY, new CountryData("IN"));
+            startActivityForResult(intent, 121);
         });
         findViewById(R.id.button2).setOnClickListener(v -> {
             startActivity(new Intent(this, EmbedViewActivity.class));

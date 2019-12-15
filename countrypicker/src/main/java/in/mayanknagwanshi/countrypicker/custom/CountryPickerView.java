@@ -35,11 +35,7 @@ public class CountryPickerView extends LinearLayout {
 
 
     public CountryPickerView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CountryPickerView);
-        showSearch = a.getBoolean(R.styleable.CountryPickerView_showSearch, true);
-        a.recycle();
-        init();
+        this(context, attrs, defStyleAttr, 0);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -66,7 +62,6 @@ public class CountryPickerView extends LinearLayout {
         } else {
             editText.addTextChangedListener(new TextWatcher() {
                 //region not used
-
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -103,5 +98,9 @@ public class CountryPickerView extends LinearLayout {
 
     public CountryData getSelectedCountry() {
         return countryAdapter.getSelectedCountry();
+    }
+
+    public void setSelectedCountry(CountryData countryData) {
+        countryAdapter.setSelectedCountry(countryData);
     }
 }

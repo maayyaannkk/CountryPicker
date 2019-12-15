@@ -7,6 +7,12 @@ public class CountryData implements Serializable {
     private int countryFlag;
     //boolean isSelected;
 
+    public CountryData() {}
+
+    public CountryData(String countryCode) {
+        this.countryCode = countryCode;
+    }
+
     public String getCountryName() {
         return countryName;
     }
